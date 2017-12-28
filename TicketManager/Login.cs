@@ -45,6 +45,7 @@ namespace TicketManager
 
             FormStorer.Add("Dashboard", new Dashboard());
             FormStorer.Get("Login").Visible = false;
+            ((Dashboard)FormStorer.Get("Dashboard")).SetCurrentUser();                  
             FormStorer.Get("Dashboard").Visible = true;
         }
     }

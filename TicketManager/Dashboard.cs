@@ -14,7 +14,12 @@ namespace TicketManager
     {
         public Dashboard()
         {
-            InitializeComponent();
+            InitializeComponent();                        
+        }
+
+        public void SetCurrentUser()
+        {
+            this.label2.Text = LocalStore.currentUser.Username;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -29,7 +34,7 @@ namespace TicketManager
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -43,6 +48,13 @@ namespace TicketManager
             this.Visible = false;
             FormStorer.Add("UserPanel", new UserPanel());
             FormStorer.Get("UserPanel").Visible = true;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            FormStorer.Add("TicketPanel", new TicketPanel());
+            FormStorer.Get("TicketPanel").Visible = true;
         }
     }
 }

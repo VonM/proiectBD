@@ -20,7 +20,7 @@ namespace TicketManager
             {
                 formDict.Add(name, form);                
             }
-            formStack.Push(form);
+            formStack.Push(formDict[name]);
         }
 
         public static Form Pop()

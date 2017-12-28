@@ -20,9 +20,9 @@ namespace TicketManager
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
             FormStorer.Pop();
             FormStorer.Peek().Visible = true;
+            this.Visible = false;           
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -79,22 +79,7 @@ namespace TicketManager
 
         private void tableLayoutPanel1_PaintCell(object sender, TableLayoutCellPaintEventArgs e)
         {
-            /*
-            Control control = this.tableLayoutPanel1.GetControlFromPosition(tableLayoutPanel1.ColumnCount - 1, e.Row);
-            if (control != null && control.GetType() == typeof(CheckBox))
-            {
-                Console.WriteLine(e.Row + " " + e.Column + " is Checkbox.");
-                CheckBox checkbox = (CheckBox)control;
-                if (checkbox.CheckState == CheckState.Checked)
-                {
-                    e.Graphics.FillRectangle(Brushes.Red, e.CellBounds);
-                }
-                else
-                {
-                    e.Graphics.FillRectangle(Brushes.White, e.CellBounds);
-                }
-            }
-            */
+           
         }
 
         private void label3_Click_1(object sender, EventArgs e)

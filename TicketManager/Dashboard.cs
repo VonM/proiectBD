@@ -44,15 +44,19 @@ namespace TicketManager
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        {            
+            LocalStore.LoadUsersFromDB();
+
             this.Visible = false;
             FormStorer.Add("UserPanel", new UserPanel());
+
+            ((UserPanel)FormStorer.Get("UserPanel")).LoadUsersInForm();
+
             FormStorer.Get("UserPanel").Visible = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
-            // LOAD users from database
+        {            
             LocalStore.LoadUsersFromDB();
 
             // LOAD ticket history for current user

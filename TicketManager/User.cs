@@ -40,7 +40,8 @@ namespace TicketManager
         {
             return "username: " + username_ + "\n" +
                    "password: " + password_ + "\n" +
-                   "role: " + role_ + "\n";                  
+                   "role: " + role_ + "\n" +
+                   "department: " + department_ + "\n";            
         }
     }
 }

@@ -15,7 +15,8 @@ namespace TicketManager
 
         public static void LoadUsersFromDB()
         {
-            // TODO
+            Console.WriteLine("Loading users from database...");
+            users = DatabaseAPI.SelectUsers();
         }    
 
         public static void LoadTicketsFromDB(string fromUser)

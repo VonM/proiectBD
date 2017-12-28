@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,7 +27,9 @@ namespace TicketManager
             Database.Instance().SetConnection("C:\\Madalin\\TicketManager\\database-new.mdf");
             //PopulateDatabase();                       
 
-            DatabaseAPI.SelectUsers();
+            ArrayList users = DatabaseAPI.SelectUsers();
+            foreach (User u in users)
+                Console.Write(u);
             DatabaseAPI.SelectTickets();       
 
             Application.Run(FormStorer.Get("Login"));

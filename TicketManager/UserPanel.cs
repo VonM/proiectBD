@@ -18,6 +18,16 @@ namespace TicketManager
             InitializeComponent();
         }
 
+        public void LoadUsersInForm()
+        {
+            ClearTable(this.tableLayoutPanel1);
+            foreach (User u in LocalStore.users)
+            {
+                AddUserToTable(u, this.tableLayoutPanel1);
+            }
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             FormStorer.Pop();
@@ -109,6 +119,41 @@ namespace TicketManager
                 ColorRow(rowIndex, Color.White);
             }           
 
+        }
+
+        private void PopRowFromTable(TableLayoutPanel table)
+        {
+
+            // Clear prev last row from table
+            for (int i = 0; i < table.ColumnCount; i++)
+            {
+                Control control = table.GetControlFromPosition(i, table.RowCount - 2);
+                if (control != null)
+                {
+                    table.Controls.Remove(control);
+                }
+            }
+
+            // Move last row upward
+            for (int i = 0; i < table.ColumnCount; i++)
+            {
+                Control control = table.GetControlFromPosition(i, table.RowCount - 1);
+                if (control != null)
+                {
+                    table.Controls.Remove(control);
+                    table.Controls.Add(control, i, table.RowCount - 2);
+                }
+            }
+
+            table.RowCount -= 1;
+        }
+
+        private void ClearTable(TableLayoutPanel table)
+        {
+            while (table.RowCount > 2)
+            {
+                PopRowFromTable(table);
+            }
         }
 
         private void AddUserToTable(User user, TableLayoutPanel table)

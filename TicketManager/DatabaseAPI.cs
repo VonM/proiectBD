@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,21 +9,6 @@ namespace TicketManager
 {
     class DatabaseAPI
     {
-        public static void SelectUsers()
-        {
-            Console.WriteLine("Selecting users..");
-            string query = "SELECT * from users;";
-            List<List<string>> ret = Database.Instance().ExecuteQuery(query);
-            foreach (List<string> l in ret)
-            {
-                foreach (string str in l)
-                {
-                    Console.Write(str + " ");
-                }
-                Console.WriteLine();
-            }
-        }
-
         public static void SelectTickets()
         {
             Console.WriteLine("Selecting tickets..");
@@ -36,6 +22,17 @@ namespace TicketManager
                 }
                 Console.WriteLine();
             }
+        }
+
+        private static User ConvertUser(List<string> rawUserData)
+        {
+            return new User()
+            {
+                Username = rawUserData[0],
+                Password = rawUserData[1],
+                Role = (Role)Enum.Parse(typeof(Role), rawUserData[2]),
+                Department = (Department)Enum.Parse(typeof(Department), rawUserData[3])
+            };
         }
 
         public static User SelectUser(string username)
@@ -60,14 +57,19 @@ namespace TicketManager
                 throw new Exception("More users with the same username inside database!");
             }
 
-            List<string> first = ret[0];
-            return new User()
-            {
-                Username = first[0],
-                Password = first[1],
-                Role = (Role)Enum.Parse(typeof(Role), first[2]),
-                Department = (Department)Enum.Parse(typeof(Department), first[3])
-            };
+            return ConvertUser(ret[0]);
+        }
+
+        public static ArrayList SelectUsers()
+        {
+            ArrayList users = new ArrayList();
+            string query = "SELECT * from users;";
+            List<List<string>> rawUsers = Database.Instance().ExecuteQuery(query);
+
+            foreach (List<string> rawUser in rawUsers) {
+                users.Add(ConvertUser(rawUser));
+            }
+            return users;
         }
     }
 }

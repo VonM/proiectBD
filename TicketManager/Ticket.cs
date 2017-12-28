@@ -15,6 +15,7 @@ namespace TicketManager
         private Department department_;
         private Category category_;
         private string description_;
+        private string date_ = "";
 
         public string Name
         {
@@ -58,6 +59,12 @@ namespace TicketManager
             set { description_ = value; }
         }
 
+        public string Date
+        {
+            get { return date_; }
+            set { date_ = value; }
+        }
+
         public override string ToString()
         {
             return "Name: " + name_ + "\n" +
@@ -66,6 +73,7 @@ namespace TicketManager
                    "Priority: " + priority_ + "\n" +
                    "Department: " + department_ + "\n" +
                    "Category: " + category_ + "\n" +
+                   "Date: " + date_ + "\n" +
                    "Description: " + description_ + "\n";
         }
     }

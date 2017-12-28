@@ -13,8 +13,7 @@ namespace TicketManager
         
         static void PopulateDatabase()
         {
-            Database.Instance().ExecuteQueryFromFile("..\\..\\PopulateUsersTable.sql");
-            Database.Instance().ExecuteQueryFromFile("..\\..\\PopulateTicketsTable.sql");
+           
         }
 
         [STAThread]
@@ -24,8 +23,9 @@ namespace TicketManager
             Application.SetCompatibleTextRenderingDefault(false);
             FormStorer.Add("Login", new Login());
 
-            Database.Instance().SetConnection("C:\\Madalin\\TicketManager\\database-new.mdf");
-            //PopulateDatabase();                       
+            Database.Instance().SetConnection("C:\\Madalin\\TicketManager\\database.mdf");
+            Database.Instance().ExecuteQueryFromFile("..\\..\\PopulateUsersTable.sql");
+            Database.Instance().ExecuteQueryFromFile("..\\..\\PopulateTicketsTable.sql");
 
             ArrayList users = DatabaseAPI.SelectUsers();
             foreach (User u in users)

@@ -16,6 +16,7 @@ namespace TicketManager
         private Category category_;
         private string description_;
         private string date_ = "";
+        private State state_;
 
         public string Name
         {
@@ -53,6 +54,12 @@ namespace TicketManager
             set { category_ = value; }
         }
 
+        public State State
+        {
+            get { return state_; }
+            set { state_ = value; }
+        }
+
         public string Description
         {
             get { return description_; }
@@ -74,6 +81,7 @@ namespace TicketManager
                    "Department: " + department_ + "\n" +
                    "Category: " + category_ + "\n" +
                    "Date: " + date_ + "\n" +
+                   "State: " + state_ + "\n" +
                    "Description: " + description_ + "\n";
         }
     }

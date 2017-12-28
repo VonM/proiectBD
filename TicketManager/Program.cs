@@ -23,7 +23,7 @@ namespace TicketManager
             Application.SetCompatibleTextRenderingDefault(false);
             FormStorer.Add("Login", new Login());
 
-            Database.Instance().SetConnection("C:\\Madalin\\TicketManager\\database.mdf");
+            Database.Instance().SetConnection("C:\\Madalin\\TicketManager\\database-new.mdf");
             Database.Instance().ExecuteQueryFromFile("..\\..\\PopulateUsersTable.sql");
             Database.Instance().ExecuteQueryFromFile("..\\..\\PopulateTicketsTable.sql");
 

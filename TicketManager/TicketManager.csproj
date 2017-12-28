@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="DatabaseAPI.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="ExportFormat.cs" />
     <Compile Include="Priority.cs" />
@@ -120,6 +122,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PopulateUsersTable.sql" />
+    <Content Include="PopulateTicketsTable.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

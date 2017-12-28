@@ -9,7 +9,7 @@ namespace TicketManager
 {
     class LocalStore
     {
-        public static User currentUser = null;
+        public static User currentUser = new User();
         public static ArrayList users = new ArrayList();
         public static ArrayList tickets = new ArrayList();
 

@@ -9,34 +9,11 @@ namespace TicketManager
 {
     static class Program
     {        
-        static void SelectUsers()
+        
+        static void PopulateDatabase()
         {
-            Console.WriteLine("Selecting users..");
-            string query = "SELECT * from users;";
-            List<List<string>> ret = Database.Instance().ExecuteQuery(query);
-            foreach (List<string> l in ret)
-            {
-                foreach (string str in l)
-                {
-                    Console.Write(str + " ");
-                }
-                Console.WriteLine();
-            }
-        }
-
-        static void SelectTickets()
-        {
-            Console.WriteLine("Selecting tickets..");
-            string query = "SELECT * from tickets;";
-            List<List<string>> ret = Database.Instance().ExecuteQuery(query);
-            foreach (List<string> l in ret)
-            {
-                foreach (string str in l)
-                {
-                    Console.Write(str + " ");
-                }
-                Console.WriteLine();
-            }
+            Database.Instance().ExecuteQueryFromFile("..\\..\\PopulateUsersTable.sql");
+            Database.Instance().ExecuteQueryFromFile("..\\..\\PopulateTicketsTable.sql");
         }
 
         [STAThread]
@@ -46,12 +23,12 @@ namespace TicketManager
             Application.SetCompatibleTextRenderingDefault(false);
             FormStorer.Add("Login", new Login());
 
-            Database.Instance().SetConnection("C:\\Madalin\\TicketManager\\database.mdf");
-                       
-            Database.Instance().ExecuteQueryFromFile("..\\..\\PopulateUsersTable.sql");
-            Database.Instance().ExecuteQueryFromFile("..\\..\\PopulateTicketsTable.sql");
-            SelectUsers();
-            SelectTickets();       
+            Database.Instance().SetConnection("C:\\Madalin\\TicketManager\\database-new.mdf");
+            //PopulateDatabase();                       
+
+            DatabaseAPI.SelectUsers();
+            DatabaseAPI.SelectTickets();       
+
             Application.Run(FormStorer.Get("Login"));
         }
 

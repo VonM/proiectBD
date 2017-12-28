@@ -16,6 +16,10 @@ namespace TicketManager
         public UserPanel()
         {
             InitializeComponent();
+            foreach (string item in Enum.GetNames(typeof(Department)))
+                this.comboBox2.Items.Add(item);
+            foreach (string item in Enum.GetNames(typeof(Role)))
+                this.comboBox1.Items.Add(item);
         }
 
         public void LoadUsersInForm()
@@ -176,8 +180,10 @@ namespace TicketManager
             }
 
             Label rowNo = new Label { Text = (table.RowCount - 2).ToString() };
-            TextBox username = new TextBox() { Text = user.Username };            
-            TextBox password = new TextBox() { Text = user.Password };
+            TextBox username = new TextBox() { Text = user.Username };
+            ComboBox department = new ComboBox() { Text = user.Department.ToString() };
+            foreach (string item in Enum.GetNames(typeof(Department)))
+                department.Items.Add(item);            
             RoleComboBox role = new RoleComboBox() { Text = user.Role.ToString() };
             CheckBox removeUser = new CheckBox() { CheckState = CheckState.Unchecked };
 
@@ -186,7 +192,7 @@ namespace TicketManager
 
             table.Controls.Add(rowNo, 0, table.RowCount - 2);
             table.Controls.Add(username, 1, table.RowCount - 2);
-            table.Controls.Add(password, 2, table.RowCount - 2);
+            table.Controls.Add(department, 2, table.RowCount - 2);
             table.Controls.Add(role, 3, table.RowCount - 2);
             table.Controls.Add(removeUser, 4, table.RowCount - 2);            
         }
@@ -195,7 +201,7 @@ namespace TicketManager
         {
             User user = new TicketManager.User();
             user.Username = this.textBox1.Text;
-            user.Password = this.textBox2.Text;
+            user.Password = this.comboBox2.Text;
             try
             {
                 user.Role = (Role)Enum.Parse(typeof(Role), this.comboBox1.Text);
@@ -216,6 +222,11 @@ namespace TicketManager
         {
             // TODO send table to database
             // clear UI table
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -201,7 +201,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.button1);
             this.Name = "UserPanel";
-            this.Text = "UserPanel";
+            this.Text = "TicketManager";
             this.Load += new System.EventHandler(this.AddUser_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

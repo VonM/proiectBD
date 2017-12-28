@@ -9,11 +9,11 @@ namespace TicketManager
 {
     static class Program
     {        
-        static void SelectUsers(DataBase db)
+        static void SelectUsers()
         {
             Console.WriteLine("Selecting users..");
             string query = "SELECT * from users;";
-            List<List<string>> ret = db.Execute(new SqlCommand(query, db.conn));
+            List<List<string>> ret = Database.Instance().ExecuteQuery(query);
             foreach (List<string> l in ret)
             {
                 foreach (string str in l)
@@ -24,11 +24,11 @@ namespace TicketManager
             }
         }
 
-        static void SelectTickets(DataBase db)
+        static void SelectTickets()
         {
             Console.WriteLine("Selecting tickets..");
             string query = "SELECT * from tickets;";
-            List<List<string>> ret = db.Execute(new SqlCommand(query, db.conn));
+            List<List<string>> ret = Database.Instance().ExecuteQuery(query);
             foreach (List<string> l in ret)
             {
                 foreach (string str in l)
@@ -45,11 +45,13 @@ namespace TicketManager
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             FormStorer.Add("Login", new Login());
-            DataBase db = new DataBase("C:\\Madalin\\TicketManager\\database.mdf");
-            db.Execute("..\\..\\PopulateUsersTable.sql");
-            db.Execute("..\\..\\PopulateTicketsTable.sql");
-            SelectUsers(db);
-            SelectTickets(db);       
+
+            Database.Instance().SetConnection("C:\\Madalin\\TicketManager\\database.mdf");
+                       
+            Database.Instance().ExecuteQueryFromFile("..\\..\\PopulateUsersTable.sql");
+            Database.Instance().ExecuteQueryFromFile("..\\..\\PopulateTicketsTable.sql");
+            SelectUsers();
+            SelectTickets();       
             Application.Run(FormStorer.Get("Login"));
         }
 

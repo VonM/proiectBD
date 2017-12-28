@@ -12,46 +12,62 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace TicketManager {
-    public class DataBase
+    public class Database
     {
-        public SqlConnection conn;
+        private SqlConnection conn_;
+        private static Database instance_ = null;
 
-        public DataBase(string absolutePath)
-        {            
-            conn = new SqlConnection();
-            if (conn.State != ConnectionState.Open)
-            {                                
+        public static Database Instance()
+        {
+            if (instance_ == null)
+                instance_ = new Database();
+            return instance_;
+        }
+
+        public void SetConnection(string absolutePath)
+        {
+            conn_ = new SqlConnection();
+            if (conn_.State != ConnectionState.Open)
+            {
                 string connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = " +
                     absolutePath + "; Integrated Security = True; Connect Timeout = 30";
                 Console.WriteLine("Create database at " + absolutePath);
-                conn.ConnectionString = connectionString;
+                conn_.ConnectionString = connectionString;
 
                 OpenIfNotOpen();
-            } else
+            }
+            else
             {
                 Console.WriteLine("Connection is open");
             }
-        }
+        }   
+        
+        private Database()
+        {
+            conn_ = null;
+        }    
 
         private void OpenIfNotOpen()
         {
-            if (conn.State != ConnectionState.Open)
+            if (conn_.State != ConnectionState.Open)
             {
-                try { conn.Open(); }
+                try { conn_.Open(); }
                 catch (Exception e) {
                     Console.Write(e);
                 }
             }
         }
 
-        public List<List<string>> Execute(string filepath)
+        public List<List<string>> ExecuteQueryFromFile(string filepath)
         {
             string query = File.ReadAllText(filepath);
-            return Execute(new SqlCommand(query, conn));
+            return ExecuteQuery(query);
         }
 
-        public List<List<string>> Execute(SqlCommand cmd)
+        public List<List<string>> ExecuteQuery(string query)
         {
+            SqlCommand cmd = new SqlCommand(query, conn_);
+
             OpenIfNotOpen();
 
             List<List<string>> ret = new List<List<string>>();

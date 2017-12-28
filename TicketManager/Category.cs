@@ -8,15 +8,15 @@ namespace TicketManager
 {
     enum Category
     {
-        BUG,
-        FEATURE,        
-        EPIC,
-        CHANGE,
-        PROBLEM,
-        TASK,
-        SUB_TASK,
-        STORY,
-        INCIDENT,
-        SERVICE_REQUEST
+        Bug,
+        Feature,        
+        Epic,
+        Change,
+        Problem,
+        Task,
+        Sub_Task,
+        Story,
+        Incident,
+        Service_Request
     }
 }

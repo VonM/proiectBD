@@ -8,10 +8,10 @@ namespace TicketManager
 {
     enum Priority
     {
-        HIGHEST,
-        HIGH,
-        MEDIUM,
-        LOW,
-        LOWEST
+        Highest,
+        High,
+        Medium,
+        Low,
+        Lowest
     }
 }

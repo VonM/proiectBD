@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace TicketManager
 {
-    enum Role
+    enum State
     {
-        Admin,        
-        Ticket_Editor,
-        Employee,
-    };
+        Assigned,
+        Started,
+        Review,
+        Closed
+    }
 }

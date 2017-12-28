@@ -17,6 +17,7 @@ namespace TicketManager
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             FormStorer.Add("Login", new Login());
+            LocalStore.LoadUsersFromDB();
             Application.Run(FormStorer.Get("Login"));
         }
 

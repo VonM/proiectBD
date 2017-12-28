@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace TicketManager
 {
-    enum Role
+    enum SortCategory
     {
-        Admin,        
-        Ticket_Editor,
-        Employee,
-    };
+        Date,
+        Priority
+    }
 }

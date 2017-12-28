@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace TicketManager
 {
-    enum Role
+    enum ExportFormat
     {
-        Admin,        
-        Ticket_Editor,
-        Employee,
-    };
+        CSV,
+        Excel
+    }
 }

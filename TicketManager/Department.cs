@@ -8,10 +8,10 @@ namespace TicketManager
 {
     enum Department
     {
-        FINANCE,
-        DEVELOPMENT,
-        MARKETING,
-        HUMAN_RESOURCES,
-        RESEARCH_AND_DEVELOPMENT
+        Finance,
+        Development,
+        Marketing,
+        Human_Resources,
+        Research_And_Development
     }
 }

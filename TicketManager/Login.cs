@@ -41,7 +41,7 @@ namespace TicketManager
             LocalStore.currentUser = new TicketManager.User();
             LocalStore.currentUser.Username = this.textBox1.Text;
             LocalStore.currentUser.Password = this.textBox2.Text;
-            LocalStore.currentUser.Role = Role.ADMIN;
+            LocalStore.currentUser.Role = Role.Admin;
 
             FormStorer.Add("Dashboard", new Dashboard());
             FormStorer.Get("Login").Visible = false;

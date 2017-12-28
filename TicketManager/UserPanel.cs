@@ -22,6 +22,46 @@ namespace TicketManager
                 this.comboBox1.Items.Add(item);
         }
 
+        private void EnableTable(bool state)
+        {
+            for (int i = 1; i < this.tableLayoutPanel1.RowCount - 1; i++)
+            {
+                for (int j = 0; j < this.tableLayoutPanel1.ColumnCount; j++)
+                {
+                    Control control = this.tableLayoutPanel1.GetControlFromPosition(j, i);
+                    control.Enabled = state;
+                }
+            }
+        }
+
+        private void HandlePlayerRole()
+        {
+            Control[] staticUI = {
+                this.button3,
+                this.textBox1,
+                this.textBox2,
+                this.comboBox1,
+                this.comboBox2,
+                this.button2
+            };
+            if (LocalStore.currentUser.Role != Role.Admin)
+            {
+                foreach (Control c in staticUI)
+                {
+                    c.Enabled = false;
+                }
+                EnableTable(false);
+            } else
+            {
+                foreach (Control c in staticUI)
+                {
+                    c.Enabled = true;
+                }
+                EnableTable(true);
+            }
+                
+        }
+
         public void LoadUsersInForm()
         {
             ClearTable(this.tableLayoutPanel1);
@@ -29,7 +69,7 @@ namespace TicketManager
             {
                 AddUserToTable(u);
             }
-
+            HandlePlayerRole();
         }
 
         private void button1_Click(object sender, EventArgs e)

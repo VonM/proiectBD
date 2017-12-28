@@ -27,7 +27,7 @@ namespace TicketManager
             ClearTable(this.tableLayoutPanel1);
             foreach (User u in LocalStore.users)
             {
-                AddUserToTable(u, this.tableLayoutPanel1);
+                AddUserToTable(u);
             }
 
         }
@@ -127,7 +127,6 @@ namespace TicketManager
 
         private void PopRowFromTable(TableLayoutPanel table)
         {
-
             // Clear prev last row from table
             for (int i = 0; i < table.ColumnCount; i++)
             {
@@ -160,13 +159,12 @@ namespace TicketManager
             }
         }
 
-        private void AddUserToTable(User user, TableLayoutPanel table)
+        private void AddUserToTable(User user)
         {
+            TableLayoutPanel table = this.tableLayoutPanel1;
             table.RowCount += 1;
             table.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            table.Size = new System.Drawing.Size(table.Size.Width, table.Size.Height + 30);
-
-            Console.WriteLine("Now table has " + table.RowCount + " rows.");
+            table.Size = new System.Drawing.Size(table.Size.Width, table.Size.Height + 30);            
 
             //Move last row downward                  
             for (int i = 0; i < table.ColumnCount; i++)
@@ -180,11 +178,14 @@ namespace TicketManager
             }
 
             Label rowNo = new Label { Text = (table.RowCount - 2).ToString() };
-            TextBox username = new TextBox() { Text = user.Username };
-            ComboBox department = new ComboBox() { Text = user.Department.ToString() };
+            TextBox username = new TextBox() { Text = user.Username, Width = this.textBox1.Width };            
+            TextBox password = new TextBox() { Text = user.Password, Width = this.textBox2.Width };
+            ComboBox department = new ComboBox() { Text = user.Department.ToString(), Width = this.comboBox2.Width };
             foreach (string item in Enum.GetNames(typeof(Department)))
                 department.Items.Add(item);            
-            RoleComboBox role = new RoleComboBox() { Text = user.Role.ToString() };
+            ComboBox role = new ComboBox() { Text = user.Role.ToString(), Width = this.comboBox1.Width};
+            foreach (string item in Enum.GetNames(typeof(Role)))
+                role.Items.Add(item);
             CheckBox removeUser = new CheckBox() { CheckState = CheckState.Unchecked };
 
             int currentRow = table.RowCount - 2;
@@ -192,25 +193,21 @@ namespace TicketManager
 
             table.Controls.Add(rowNo, 0, table.RowCount - 2);
             table.Controls.Add(username, 1, table.RowCount - 2);
-            table.Controls.Add(department, 2, table.RowCount - 2);
-            table.Controls.Add(role, 3, table.RowCount - 2);
-            table.Controls.Add(removeUser, 4, table.RowCount - 2);            
+            table.Controls.Add(password, 2, table.RowCount - 2);
+            table.Controls.Add(department, 3, table.RowCount - 2);
+            table.Controls.Add(role, 4, table.RowCount - 2);
+            table.Controls.Add(removeUser, 5, table.RowCount - 2);            
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
             User user = new TicketManager.User();
             user.Username = this.textBox1.Text;
-            user.Password = this.comboBox2.Text;
-            try
-            {
-                user.Role = (Role)Enum.Parse(typeof(Role), this.comboBox1.Text);
-                Console.Write("Adding user:\n" + user);
-                AddUserToTable(user, this.tableLayoutPanel1);
-            } catch (Exception except)
-            {
-                Console.Write(except.StackTrace);
-            }            
+            user.Password = this.textBox2.Text;
+            user.Department = (Department)Enum.Parse(typeof(Department), this.comboBox2.Text);
+            user.Role = (Role)Enum.Parse(typeof(Role), this.comboBox1.Text);
+            Console.Write("Adding user:\n" + user);
+            AddUserToTable(user);          
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -221,10 +218,35 @@ namespace TicketManager
         private void button3_Click_1(object sender, EventArgs e)
         {
             // TODO send table to database
-            // clear UI table
+            ArrayList gatheredUsers = new ArrayList();
+            for (int i = 1; i < this.tableLayoutPanel1.RowCount - 1; i++)
+            {
+                CheckBox checkBox = (CheckBox)this.tableLayoutPanel1.GetControlFromPosition(this.tableLayoutPanel1.ColumnCount - 1, i);
+                if (checkBox.CheckState != CheckState.Checked)
+                {
+                    User user = new User();
+                    user.Username = ((TextBox)this.tableLayoutPanel1.GetControlFromPosition(1, i)).Text;
+                    user.Password = ((TextBox)this.tableLayoutPanel1.GetControlFromPosition(2, i)).Text;
+                    user.Department = (Department)Enum.Parse(typeof(Department), ((ComboBox)this.tableLayoutPanel1.GetControlFromPosition(3, i)).Text);
+                    user.Role = (Role)Enum.Parse(typeof(Role), ((ComboBox)this.tableLayoutPanel1.GetControlFromPosition(4, i)).Text);
+                    gatheredUsers.Add(user);
+                }               
+            }
+
+            LocalStore.UpdateUsers(gatheredUsers);          
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -23,5 +23,16 @@ namespace TicketManager
         {
             // TODO
         }
+
+        public static void UpdateUsers(ArrayList userList)
+        {
+            Console.WriteLine("Updated users: ");
+            foreach (User u in userList)
+            {
+                Console.Write(u);
+            }
+            users = userList;
+            DatabaseAPI.UpdateUsers(userList);
+        }
     }
 }

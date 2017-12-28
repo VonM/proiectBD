@@ -71,5 +71,23 @@ namespace TicketManager
             }
             return users;
         }
+
+        public static void UpdateUsers(ArrayList users)
+        {
+            string query =
+                "TRUNCATE TABLE users;";
+
+            foreach (User u in users)
+            {
+                query += "INSERT INTO users (Username, Password, Role, Department) VALUES (" +
+                    "'" + u.Username + "', " +
+                    "'" + u.Password + "', " +
+                    "'" + u.Role + "', " +
+                    "'" + u.Department + "'" +
+                    ");";
+            }
+
+            Database.Instance().ExecuteQuery(query);
+        }
     }
 }

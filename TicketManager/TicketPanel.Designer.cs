@@ -138,6 +138,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(353, 179);
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // button2
             // 
@@ -147,6 +148,7 @@
             this.button2.TabIndex = 10;
             this.button2.Text = "Create Ticket";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label2
             // 
@@ -183,6 +185,7 @@
             this.richTextBox2.Size = new System.Drawing.Size(473, 394);
             this.richTextBox2.TabIndex = 14;
             this.richTextBox2.Text = "";
+            this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
             // 
             // label7
             // 
@@ -340,6 +343,7 @@
             this.button3.TabIndex = 31;
             this.button3.Text = "List Tickets";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label16
             // 

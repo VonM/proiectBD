@@ -35,8 +35,13 @@ namespace TicketManager
                 this.comboBox9.Items.Add(item);
             foreach (string item in Enum.GetNames(typeof(ExportFormat)))
                 this.comboBox10.Items.Add(item);
+            
+            foreach (Ticket ticket in LocalStore.tickets) {
+                this.richTextBox2.Text += ticket;
+            }
         }
 
+        
         private void button1_Click(object sender, EventArgs e)
         {
             FormStorer.Pop();
@@ -115,6 +120,37 @@ namespace TicketManager
         }
 
         private void comboBox10_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Ticket ticket =  new TicketManager.Ticket()
+            {
+                Name = this.textBox1.Text,
+                Department = (Department)Enum.Parse(typeof(Department), this.comboBox1.Text),
+                Category = (Category)Enum.Parse(typeof(Category), this.comboBox5.Text),
+                Priority = (Priority)Enum.Parse(typeof(Priority), this.comboBox3.Text),
+                ToUser = this.comboBox2.Text,
+                FromUser = LocalStore.currentUser.Username,
+                Description = this.richTextBox1.Text
+            };
+
+            Console.Write("Created ticket:\n" + ticket);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // TODO list tickets
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
 
         }

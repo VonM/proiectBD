@@ -11,10 +11,17 @@ namespace TicketManager
         private string username_;
         private string password_;
         private Role role_;
+        private Department department_;
 
         public Role Role {
             get { return role_; }
             set { role_ = value; }            
+        }
+
+        public Department Department
+        {
+            get { return department_; }
+            set { department_ = value; }
         }
 
         public string Username

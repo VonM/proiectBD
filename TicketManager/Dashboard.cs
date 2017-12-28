@@ -52,9 +52,17 @@ namespace TicketManager
 
         private void button3_Click(object sender, EventArgs e)
         {
+            // LOAD users from database
+            LocalStore.LoadUsersFromDB();
+
+            // LOAD ticket history for current user
+            LocalStore.LoadTicketsFromDB(LocalStore.currentUser.Username);
+
             this.Visible = false;
             FormStorer.Add("TicketPanel", new TicketPanel());
             FormStorer.Get("TicketPanel").Visible = true;
+
+
         }
     }
 }

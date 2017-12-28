@@ -57,5 +57,16 @@ namespace TicketManager
             get { return description_; }
             set { description_ = value; }
         }
+
+        public override string ToString()
+        {
+            return "Name: " + name_ + "\n" +
+                   "From: " + fromUser_ + "\n" +
+                   "To: " + toUser_ + "\n" +
+                   "Priority: " + priority_ + "\n" +
+                   "Department: " + department_ + "\n" +
+                   "Category: " + category_ + "\n" +
+                   "Description: " + description_ + "\n";
+        }
     }
 }

@@ -11,10 +11,16 @@ namespace TicketManager
     {
         public static User currentUser = null;
         public static ArrayList users = new ArrayList();
+        public static ArrayList tickets = new ArrayList();
 
         public static void LoadUsersFromDB()
         {
-
+            // TODO
         }    
+
+        public static void LoadTicketsFromDB(string fromUser)
+        {
+            // TODO
+        }
     }
 }

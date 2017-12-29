@@ -21,6 +21,7 @@ namespace TicketManager
         {
             this.label2.Text = LocalStore.currentUser.Username;
             this.label3.Text = LocalStore.currentUser.Role.ToString();
+            this.label4.Text = LocalStore.currentUser.Department.ToString();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -82,6 +83,11 @@ namespace TicketManager
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }

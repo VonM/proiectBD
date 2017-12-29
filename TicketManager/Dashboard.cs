@@ -56,17 +56,27 @@ namespace TicketManager
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {            
-            LocalStore.LoadUsersFromDB();
-
-            // LOAD ticket history for current user
-            LocalStore.LoadTicketsFromDB(LocalStore.currentUser.Username);
-
+        {
             this.Visible = false;
-            FormStorer.Add("TicketPanel", new TicketPanel());
-            FormStorer.Get("TicketPanel").Visible = true;
+            FormStorer.Add("CreateTicket", new CreateTicket());
+            FormStorer.Get("CreateTicket").Visible = true;    
 
+//            LocalStore.LoadUsersFromDB();
 
+  
+//            LocalStore.LoadTicketsFromDB(LocalStore.currentUser.Username);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            FormStorer.Add("ListTickets", new ListTickets());
+            FormStorer.Get("ListTickets").Visible = true;
         }
     }
 }

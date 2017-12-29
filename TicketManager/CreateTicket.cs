@@ -77,7 +77,8 @@ namespace TicketManager
             this.comboBox2.Items.Clear();
             foreach (User user in LocalStore.users)
             {
-                if (user.Department == (Department)Enum.Parse(typeof(Department), this.comboBox1.Text))
+                if (user.Department == (Department)Enum.Parse(typeof(Department), this.comboBox1.Text) &&
+                    user.Role == Role.Ticket_Editor)
                 this.comboBox2.Items.Add(user.Username);
             }
         }

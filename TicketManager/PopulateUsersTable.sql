@@ -13,3 +13,4 @@ INSERT INTO users (Username, Password, Role, Department) VALUES ('marin', '00E93
 INSERT INTO users (Username, Password, Role, Department) VALUES ('cristi', 'EF58F2A7554D79F9A00B5522F5C2D437FA931AF97B05843EE030967730F5AED0', 'Employee', 'Marketing');
 INSERT INTO users (Username, Password, Role, Department) VALUES ('dorin', '277B12C317720A0BA21BEB0FB7EB4C3BB44EBA7B32A3D98E97FC11FA20A4E2EA', 'Ticket_Editor', 'Research_And_Development');
 INSERT INTO users (Username, Password, Role, Department) VALUES ('vasile', '224FC9B678DE0EE4F719E0B06053E523C30F9C2EDE629322679C47264B58E72D', 'Ticket_Editor', 'Human_Resources');
+INSERT INTO users (Username, Password, Role, Department) VALUES ('cosmin', '66900B2138C834926F16A01E7EEEEE82865332B6D9089B8F7058BF952CC71631', 'Employee', 'Human_Resources');

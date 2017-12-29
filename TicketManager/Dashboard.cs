@@ -68,7 +68,11 @@ namespace TicketManager
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            this.Visible = false;
+            TicketsPanel next = new TicketsPanel();
+            FormStorer.Add("TicketsPanel", next);
+            next.HandlePlayerRole();
+            next.Visible = true;
         }
 
         private void button4_Click(object sender, EventArgs e)

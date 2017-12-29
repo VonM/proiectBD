@@ -61,8 +61,7 @@ namespace TicketManager
             } else
             {
                 label3.Text = "";
-                string hashedPassword = sha256(this.textBox2.Text);
-                Console.WriteLine("Gen hash: " + hashedPassword);
+                string hashedPassword = sha256(this.textBox2.Text);                
                 if (LocalStore.currentUser.Password == hashedPassword)
                 {
                     FormStorer.Add("Dashboard", new Dashboard());

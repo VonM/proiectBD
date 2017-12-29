@@ -41,7 +41,12 @@ namespace TicketManager
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            DatabaseAPI.SelectTickets(
+                this.comboBox4.Text,
+                this.comboBox6.Text,
+                this.comboBox7.Text,
+                this.comboBox8.Text,
+                this.comboBox9.Text);
         }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)

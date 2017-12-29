@@ -68,12 +68,6 @@
     <Compile Include="SortCategory.cs" />
     <Compile Include="State.cs" />
     <Compile Include="Ticket.cs" />
-    <Compile Include="TicketPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TicketPanel.Designer.cs">
-      <DependentUpon>TicketPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserPanel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,9 +97,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListTickets.resx">
       <DependentUpon>ListTickets.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TicketPanel.resx">
-      <DependentUpon>TicketPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserPanel.resx">
       <DependentUpon>UserPanel.cs</DependentUpon>

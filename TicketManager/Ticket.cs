@@ -15,7 +15,7 @@ namespace TicketManager
         private Department department_;
         private Category category_;
         private string description_;
-        private string date_ = "";
+        private DateTime date_;
         private State state_;
 
         public string Name
@@ -66,7 +66,7 @@ namespace TicketManager
             set { description_ = value; }
         }
 
-        public string Date
+        public DateTime Date
         {
             get { return date_; }
             set { date_ = value; }

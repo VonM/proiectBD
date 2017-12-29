@@ -89,5 +89,53 @@ namespace TicketManager
 
             Database.Instance().ExecuteQuery(query);
         }
+
+        public static void AddTicket(Ticket ticket)
+        {
+            string query = "INSERT INTO tickets(Name, FromUser, ToUser, Priority, Department, Category, Date, State, Description) VALUES (" +
+                "'" + ticket.Name + "', " +
+                "'" + ticket.FromUser + "', " +
+                "'" + ticket.ToUser + "', " +
+                "'" + ticket.Priority + "', " +
+                "'" + ticket.Department + "', " +
+                "'" + ticket.Category + "', " +                
+                "'" + ticket.Date.ToString("yyyyMMdd hh:mm:ss tt") + "', " +
+                "'" + ticket.State + "', " +
+                "'" + ticket.Description + "'" +
+                ");";
+            Console.WriteLine(query);
+            Database.Instance().ExecuteQuery(query);                
+        }
+
+        public static void SelectTickets(
+            string department,
+            string category,
+            string priority,
+            string state,
+            string sortCategory)
+        {
+            string query = "SELECT * from tickets WHERE ";
+
+            if (department != "")            
+                query += "Department=" + "'" + department + "' AND ";
+            
+            if (category != "")            
+                query += "Category=" + "'" + category + "' AND ";
+
+            if (priority != "")
+                query += "Priority=" + "'" + priority + "' AND ";
+
+            if (state != "")
+                query += "State=" + "'" + state + "' ";
+
+            if (sortCategory == SortCategory.Date.ToString())
+                query += "ORDER BY Date";
+            else if (sortCategory == SortCategory.Priority.ToString())
+                query += "ORDER BY Priority";
+                        
+            query += ";";
+            
+            Console.WriteLine(query);
+        }
     }
 }

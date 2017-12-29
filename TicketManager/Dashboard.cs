@@ -57,11 +57,10 @@ namespace TicketManager
 
         private void button3_Click(object sender, EventArgs e)
         {
+            LocalStore.LoadUsersFromDB();
             this.Visible = false;
             FormStorer.Add("CreateTicket", new CreateTicket());
             FormStorer.Get("CreateTicket").Visible = true;    
-
-//            LocalStore.LoadUsersFromDB();
 
   
 //            LocalStore.LoadTicketsFromDB(LocalStore.currentUser.Username);

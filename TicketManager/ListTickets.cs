@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 namespace TicketManager
 {
@@ -33,7 +35,8 @@ namespace TicketManager
             {
                 foreach (string item in Enum.GetNames(entry.Value))
                     entry.Key.Items.Add(item);
-            }            
+            }                
+               
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -107,6 +110,17 @@ namespace TicketManager
 
         }
 
+     
+        private void WriteToPdf(string filename, string text)
+        {
+            FileStream fs = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None);
+            Document doc = new Document();
+            PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+            doc.Open();
+            doc.Add(new Paragraph(text));
+            doc.Close();
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {   
             if (this.comboBox10.Text == ExportFormat.CSV.ToString())
@@ -136,6 +150,11 @@ namespace TicketManager
                     textBox1.Text = "";
                     this.comboBox10.Text = "";
                 }
+            } else if (this.comboBox10.Text == ExportFormat.PDF.ToString())
+            {
+                WriteToPdf(textBox1.Text + ".pdf", this.richTextBox3.Text);
+                this.textBox1.Text = "";
+                this.comboBox10.Text = "";
             }
         }
     }

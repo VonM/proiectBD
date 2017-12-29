@@ -9,6 +9,7 @@ namespace TicketManager
     enum ExportFormat
     {
         CSV,
-        Excel
+        Excel,
+        PDF
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
@@ -9,6 +10,9 @@ namespace TicketManager
 {
     class DatabaseAPI
     {
+        public static string dbDateFormatIn = "yyyyMMdd hh:mm:ss tt";
+        public static string dbDateFormatOut = "M/d/yyyy hh:mm:ss tt";
+
         public static void SelectTickets()
         {
             Console.WriteLine("Selecting tickets..");
@@ -32,6 +36,22 @@ namespace TicketManager
                 Password = rawUserData[1],
                 Role = (Role)Enum.Parse(typeof(Role), rawUserData[2]),
                 Department = (Department)Enum.Parse(typeof(Department), rawUserData[3])
+            };
+        }
+
+        private static Ticket ConvertTicket(List<string> rawTicketData)
+        {          
+            return new Ticket()
+            {
+                Name = rawTicketData[0],
+                FromUser = rawTicketData[1],
+                ToUser = rawTicketData[2],
+                Priority = (Priority)int.Parse(rawTicketData[3]),
+                Department = (Department)Enum.Parse(typeof(Department), rawTicketData[4]),
+                Category = (Category)Enum.Parse(typeof(Category), rawTicketData[5]),
+                Date = DateTime.ParseExact(rawTicketData[6], dbDateFormatOut, CultureInfo.InvariantCulture),
+                State = (State)Enum.Parse(typeof(State), rawTicketData[7]),
+                Description = rawTicketData[8]
             };
         }
 
@@ -96,10 +116,10 @@ namespace TicketManager
                 "'" + ticket.Name + "', " +
                 "'" + ticket.FromUser + "', " +
                 "'" + ticket.ToUser + "', " +
-                "'" + ticket.Priority + "', " +
+                "'" + (int)ticket.Priority + "', " +
                 "'" + ticket.Department + "', " +
                 "'" + ticket.Category + "', " +                
-                "'" + ticket.Date.ToString("yyyyMMdd hh:mm:ss tt") + "', " +
+                "'" + ticket.Date.ToString(dbDateFormatIn) + "', " +
                 "'" + ticket.State + "', " +
                 "'" + ticket.Description + "'" +
                 ");";
@@ -107,35 +127,76 @@ namespace TicketManager
             Database.Instance().ExecuteQuery(query);                
         }
 
-        public static void SelectTickets(
+        public static ArrayList SelectTickets(
             string department,
             string category,
             string priority,
             string state,
             string sortCategory)
         {
-            string query = "SELECT * from tickets WHERE ";
+            string query = "SELECT * from tickets";
+            int clauses = 0;
 
-            if (department != "")            
-                query += "Department=" + "'" + department + "' AND ";
+            if (department != "" || category != "" || priority != "" || state != "")
+                query += " WHERE ";
+
+            if (department != "")
+            {
+                if (clauses > 0)
+                {
+                    query += " AND ";
+                }
+                query += "Department=" + "'" + department + "'";
+                clauses++;
+            }
             
-            if (category != "")            
-                query += "Category=" + "'" + category + "' AND ";
+            if (category != "")
+            {
+                if (clauses > 0)
+                {
+                    query += " AND ";
+                }
+                query += "Category=" + "'" + category + "'";
+                clauses++;
+            }                
 
             if (priority != "")
-                query += "Priority=" + "'" + priority + "' AND ";
+            {
+                if (clauses > 0)
+                {
+                    query += " AND ";
+                }
+                query += "Priority=" + "'" + priority + "'";
+                clauses++;
+            }
+
 
             if (state != "")
-                query += "State=" + "'" + state + "' ";
+            {
+                if (clauses > 0)
+                {
+                    query += " AND ";
+                }
+                clauses++;
+                query += "State=" + "'" + state + "'";
+            }
 
             if (sortCategory == SortCategory.Date.ToString())
-                query += "ORDER BY Date";
+                query += " ORDER BY Date";
             else if (sortCategory == SortCategory.Priority.ToString())
-                query += "ORDER BY Priority";
+                query += " ORDER BY Priority";
                         
             query += ";";
-            
+
             Console.WriteLine(query);
+            List<List<string>> res = Database.Instance().ExecuteQuery(query);
+
+            ArrayList tickets = new ArrayList();
+            foreach (List<string> t in res)
+            {   
+                tickets.Add(ConvertTicket(t));
+            }
+            return tickets;            
         }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label17 = new System.Windows.Forms.Label();
             this.comboBox10 = new System.Windows.Forms.ComboBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -44,21 +43,14 @@
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(486, 74);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(52, 17);
-            this.label17.TabIndex = 51;
-            this.label17.Text = "Export:";
             // 
             // comboBox10
             // 
             this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Location = new System.Drawing.Point(544, 74);
+            this.comboBox10.Location = new System.Drawing.Point(687, 73);
             this.comboBox10.Name = "comboBox10";
             this.comboBox10.Size = new System.Drawing.Size(121, 24);
             this.comboBox10.TabIndex = 50;
@@ -72,6 +64,7 @@
             this.richTextBox3.Size = new System.Drawing.Size(473, 344);
             this.richTextBox3.TabIndex = 49;
             this.richTextBox3.Text = "";
+            this.richTextBox3.TextChanged += new System.EventHandler(this.richTextBox3_TextChanged);
             // 
             // button3
             // 
@@ -193,13 +186,32 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(489, 74);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(176, 22);
+            this.textBox1.TabIndex = 53;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(837, 73);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(78, 32);
+            this.button2.TabIndex = 54;
+            this.button2.Text = "Export";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // ListTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(997, 488);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label17);
             this.Controls.Add(this.comboBox10);
             this.Controls.Add(this.richTextBox3);
             this.Controls.Add(this.button3);
@@ -222,8 +234,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox comboBox10;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.Button button3;
@@ -239,5 +249,7 @@
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button2;
     }
 }

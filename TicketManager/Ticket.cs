@@ -84,5 +84,18 @@ namespace TicketManager
                    "State: " + state_ + "\n" +
                    "Description: " + description_ + "\n";
         }
+
+        public string ToCSV()
+        {
+            return name_ + "," +
+                   fromUser_ + "," +
+                   toUser_ + "," +
+                   priority_ + "," +
+                   department_ + "," +
+                   category_ + "," +
+                   date_ + "," +
+                   state_ + "," +
+                   description_ + "\n";
+        }
     }
 }

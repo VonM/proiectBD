@@ -62,12 +62,6 @@
     <Compile Include="DatabaseAPI.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="ExportFormat.cs" />
-    <Compile Include="ListTickets.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ListTickets.Designer.cs">
-      <DependentUpon>ListTickets.cs</DependentUpon>
-    </Compile>
     <Compile Include="Priority.cs" />
     <Compile Include="SortCategory.cs" />
     <Compile Include="State.cs" />
@@ -104,9 +98,6 @@
     <Compile Include="User.cs" />
     <EmbeddedResource Include="CreateTicket.resx">
       <DependentUpon>CreateTicket.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListTickets.resx">
-      <DependentUpon>ListTickets.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TicketsPanel.resx">
       <DependentUpon>TicketsPanel.cs</DependentUpon>

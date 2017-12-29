@@ -20,6 +20,7 @@ namespace TicketManager
         public void SetCurrentUser()
         {
             this.label2.Text = LocalStore.currentUser.Username;
+            this.label3.Text = LocalStore.currentUser.Role.ToString();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -75,11 +76,14 @@ namespace TicketManager
             next.Visible = true;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
-            FormStorer.Add("ListTickets", new ListTickets());
-            FormStorer.Get("ListTickets").Visible = true;
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

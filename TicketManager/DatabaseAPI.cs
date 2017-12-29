@@ -11,7 +11,7 @@ namespace TicketManager
     class DatabaseAPI
     {
         public static string dbDateFormatIn = "yyyyMMdd hh:mm:ss tt";
-        public static string dbDateFormatOut = "M/d/yyyy hh:mm:ss tt";
+        public static string dbDateFormatOut = "M/d/yyyy h:mm:ss tt";
 
         public static void SelectTickets()
         {
@@ -30,7 +30,8 @@ namespace TicketManager
 
         public static DateTime ParseDateFromDB(string date)
         {
-            return DateTime.ParseExact(date, dbDateFormatOut, CultureInfo.InvariantCulture);
+            return DateTime.Parse(date);
+            //return DateTime.ParseExact(date, dbDateFormatOut, CultureInfo.InvariantCulture);
         }
 
         public static string ConvertDateToDB(DateTime date)
@@ -310,6 +311,14 @@ namespace TicketManager
 
             Console.WriteLine(query);
             List<List<string>> res = Database.Instance().ExecuteQuery(query);
+            foreach (List<string> l in res)
+            {
+                foreach (string str in l)
+                {
+                    Console.Write(str + " ");
+                }
+                Console.WriteLine();
+            }
 
             ArrayList tickets = new ArrayList();
             foreach (List<string> t in res)

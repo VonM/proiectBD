@@ -76,6 +76,14 @@ namespace TicketManager
                 this.comboBox8.Text,
                 this.comboBox9.Text,
                 LocalStore.currentUser.Username);
+
+                filteredTickets_.AddRange(DatabaseAPI.SelectTicketsFromUser(
+                this.comboBox6.Text,
+                this.comboBox7.Text,
+                priority,
+                this.comboBox8.Text,
+                this.comboBox9.Text,
+                LocalStore.currentUser.Username));
             }
             else if (LocalStore.currentUser.Role == Role.Employee)
             {

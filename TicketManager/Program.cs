@@ -9,13 +9,7 @@ using System.Data.SqlClient;
 namespace TicketManager
 {
     static class Program
-    {        
-        
-        static void PopulateDatabase()
-        {
-           
-        }
-
+    { 
         [STAThread]
         static void Main()
         {
